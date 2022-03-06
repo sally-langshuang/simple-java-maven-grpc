@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.olivia.proto.protobuf";
+option java_outer_classname = "Cpu";
+
+message Cpu {
+  // Intel(R) Core(TM) i7-4770HQ CPU @ 2.20GHz
+  optional string brand = 1;
+  optional int32 cache = 2;
+  optional Cache frequency = 3;
+
+  message Frequency {
+    optional int32 number = 1;
+    optional ByteUnit unit = 2;
+
+    enum ByteUnit {
+      B = 0;
+      KB = 1;
+      MB = 2;
+      GB = 3;
+      TB = 4;
+    }
+  }
+
+  message Cache {
+    optional int32 number = 1;
+
+    enum FrequencyUnit {
+      HZ = 0;
+      KHZ = 1;
+      MHZ = 2;
+      GHZ = 3;
+    }
+  }
+}
+
