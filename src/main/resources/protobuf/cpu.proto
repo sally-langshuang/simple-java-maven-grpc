@@ -1,18 +1,19 @@
 syntax = "proto3";
 
+package cpu;
 option java_multiple_files = true;
-option java_package = "com.olivia.proto.protobuf";
-option java_outer_classname = "Cpu";
+option java_package = "com.olivia.proto";
+option java_outer_classname = "Computer";
 
 message Cpu {
   // Intel(R) Core(TM) i7-4770HQ CPU @ 2.20GHz
-  optional string brand = 1;
-  optional int32 cache = 2;
-  optional Cache frequency = 3;
+  string brand = 1;
+  int32 cache = 2;
+  Cache frequency = 3;
 
   message Frequency {
-    optional int32 number = 1;
-    optional ByteUnit unit = 2;
+    int32 number = 1;
+    ByteUnit unit = 2;
 
     enum ByteUnit {
       B = 0;
@@ -24,7 +25,7 @@ message Cpu {
   }
 
   message Cache {
-    optional int32 number = 1;
+    int32 number = 1;
 
     enum FrequencyUnit {
       HZ = 0;
@@ -33,5 +34,11 @@ message Cpu {
       GHZ = 3;
     }
   }
+}
+message Empty {
+
+}
+service CpuService {
+  rpc Ping(Empty) returns (Cpu);
 }
 
